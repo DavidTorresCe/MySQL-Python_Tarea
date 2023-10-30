@@ -15,6 +15,7 @@ class PaisMysql(Mysqlconnect):
             self.dbconexion.commit()
             self.cursor.close()
             self.desconectar()
+            print("Insercion de datos exitosa")
             return True
 
         except Error as e:
@@ -25,7 +26,7 @@ class PaisMysql(Mysqlconnect):
     def editar(self, nombre, nuevo_nombre):
         self.conectar()
         try:
-            self.cursor = self.dbconexion.cursor()  # Crea un cursor al conectarse
+            self.cursor = self.dbconexion.cursor()
             check_sql = "SELECT COUNT(*) FROM pais WHERE nombre = %s"
             self.cursor.execute(check_sql, (nuevo_nombre,))
             count = self.cursor.fetchone()[0]
@@ -51,7 +52,49 @@ class PaisMysql(Mysqlconnect):
             print(f"Error al editar datos: {e}")
             return False
 
+    def eliminar(self, Pk):
+        self.conectar()
+        try:
+            self.cursor = self.dbconexion.cursor()
+            sql = "DELETE FROM pais WHERE id = %s"
+            val = (Pk, )
+            self.cursor.execute(sql, val)
+            self.dbconexion.commit()
+            self.cursor.close()
+            self.desconectar()
+            print("Borrado de datos exitoso")
+            return True
+
+        except Error as e:
+            self.desconectar()
+            print(f"Error al eliminar datos: {e}")
+            return False
+
+    def consultar(self, cadena):
+        self.conectar()
+        try:
+            self.cursor = self.dbconexion.cursor()
+            sql = "SELECT * FROM pais WHERE " + cadena
+            self.cursor.execute(sql)
+            resultado = self.cursor.fetchall()
+            self.cursor.close()
+            self.desconectar()
+            print("Consulta exitosa")
+            return resultado
+
+        except Error as e:
+            self.desconectar()
+            print(f"Error al realizar la consulta: {e}")
+            return None
+
+
 if __name__ == "__main__":
     db = PaisMysql(Conexion.HOST.value, Conexion.USER.value, Conexion.PASSWORD.value, Conexion.DATABASE.value)
-    #db.insertar(3, "Marruecos")
-    db.editar("Mexico", "USA")
+    #db.insertar(5, "Canada")
+    #db.editar("Venezuela", "USA")
+    #db.eliminar(2)
+    consulta = db.consultar("nombre like '%M%'")
+    if consulta is not None:
+        for i in consulta:
+         print(i)
+

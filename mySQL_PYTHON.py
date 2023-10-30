@@ -1,5 +1,5 @@
 from mysql.connector import connect, Error
-import tkinter as tk
+#import tkinter as tk
 from tkinter import messagebox
 from enum import Enum
 
@@ -26,8 +26,7 @@ class Mysqlconnect():
                 database=self._database
             )
 
-            tk.messagebox.showinfo(
-                "Conexion abierta",
+            print(
                 f"Conexion abierta\nTipo de conexión: {type(self.dbconexion)}"
             )
 
@@ -37,7 +36,7 @@ class Mysqlconnect():
     def desconectar(self):
         if self.dbconexion is not None:
             self.dbconexion.close()
-            tk.messagebox.showinfo("Conexion cerrada", "Se ha cerrado la conexión con la base de datos")
+            print("Se ha cerrado la conexión con la base de datos")
 
 if __name__ == "__main__":
     db = Mysqlconnect(Conexion.HOST.value, Conexion.USER.value, Conexion.PASSWORD.value, Conexion.DATABASE.value)
