@@ -52,8 +52,47 @@ class OlimpiadaMySql(Mysqlconnect):
             print(f"Error al editar datos: {e}")
             return False
 
+    def eliminar(self, Pk):
+        self.conectar()
+        try:
+            self.cursor = self.dbconexion.cursor()
+            sql = "DELETE FROM olimpiada WHERE id = %s"
+            val = (Pk, )
+            self.cursor.execute(sql, val)
+            self.dbconexion.commit()
+            self.cursor.close()
+            self.desconectar()
+            print("Borrado de datos exitoso")
+            return True
+
+        except Error as e:
+            self.desconectar()
+            print(f"Error al eliminar datos: {e}")
+            return False
+
+    def consultar(self, cadena):
+        self.conectar()
+        try:
+            self.cursor = self.dbconexion.cursor()
+            sql = "SELECT * FROM olimpiada WHERE " + cadena
+            self.cursor.execute(sql)
+            resultado = self.cursor.fetchall()
+            self.cursor.close()
+            self.desconectar()
+            print("Consulta exitosa")
+            if resultado is not None:
+                for i in resultado:
+                    print(i)
+
+        except Error as e:
+            self.desconectar()
+            print(f"Error al realizar la consulta: {e}")
+            return None
+
 
 if __name__ == "__main__":
     db = OlimpiadaMySql(Conexion.HOST.value, Conexion.USER.value, Conexion.PASSWORD.value, Conexion.DATABASE.value)
     #db.insertar(5, 2008)
     #db.editar(2008, 2000)
+    #db.eliminar(5)
+    db.consultar("year_olimpiada > 2000")

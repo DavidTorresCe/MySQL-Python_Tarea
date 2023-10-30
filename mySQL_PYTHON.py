@@ -6,7 +6,7 @@ from enum import Enum
 class Conexion(Enum):
     HOST = "localhost"
     USER = "root"
-    PASSWORD = "AAAAAA"  # Cambia esto a tu contraseña
+    PASSWORD = "Ab@ntonio347"  # Cambia esto a tu contraseña
     DATABASE = "olimpiadas"
 
 class Mysqlconnect():

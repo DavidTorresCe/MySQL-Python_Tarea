@@ -37,7 +37,6 @@ class PaisMysql(Mysqlconnect):
                 self.desconectar()
                 return False
 
-
             else:
                 sql = "UPDATE pais SET nombre = %s WHERE nombre = %s"
                 val = (nuevo_nombre, nombre)
@@ -80,7 +79,9 @@ class PaisMysql(Mysqlconnect):
             self.cursor.close()
             self.desconectar()
             print("Consulta exitosa")
-            return resultado
+            if resultado is not None:
+                for i in resultado:
+                    print(i)
 
         except Error as e:
             self.desconectar()
@@ -90,11 +91,8 @@ class PaisMysql(Mysqlconnect):
 
 if __name__ == "__main__":
     db = PaisMysql(Conexion.HOST.value, Conexion.USER.value, Conexion.PASSWORD.value, Conexion.DATABASE.value)
-    #db.insertar(5, "Canada")
+    #db.insertar(6, "Colombia")
     #db.editar("Venezuela", "USA")
     #db.eliminar(2)
-    consulta = db.consultar("nombre like '%M%'")
-    if consulta is not None:
-        for i in consulta:
-         print(i)
+    db.consultar("nombre like '%M%'")
 
