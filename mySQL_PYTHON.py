@@ -18,7 +18,7 @@ from enum import Enum
 class Conexion(Enum):
     HOST = "localhost"
     USER = "root"
-    PASSWORD = "AAAAA"  # Cambia esto a tu contraseña
+    PASSWORD = "AAAAAA"  # Cambia esto a tu contraseña
     DATABASE = "olimpiadas"
 
 class Mysqlconnect():
@@ -28,6 +28,38 @@ class Mysqlconnect():
         self._password = Conexion.PASSWORD.value
         self._database = Conexion.DATABASE.value
         self.dbconexion = None
+
+    @property
+    def host(self):
+        return self._host
+
+    @host.setter
+    def host(self, value):
+        self._host = value
+
+    @property
+    def user(self):
+        return self._user
+
+    @user.setter
+    def user(self, value):
+        self._user = value
+
+    @property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def password(self, value):
+        self._password = value
+
+    @property
+    def database(self):
+        return self._database
+
+    @database.setter
+    def database(self, value):
+        self._database = value
 
     def conectar(self):
         try:
