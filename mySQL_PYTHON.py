@@ -1,6 +1,18 @@
+"""
+Torres Celedon David Antonio 951 2/NOV/23
+
+Desarrollar una clase llamada MySQLConnect que tenga como atributos:
+host, user, password, database. Debe crear sus métodos set y get (property, setters).
+Debe tener los siguientes métodos:
+conectar() : Debe conectarse a la base de datos usando los atributos, debe retornar el objeto de conexión.
+desconectar(): Debe desconectar la base de datos. No debe retornar nada. Investigar método close().
+
+"""
+
+
 from mysql.connector import connect, Error
 #import tkinter as tk
-from tkinter import messagebox
+#from tkinter import messagebox
 from enum import Enum
 
 class Conexion(Enum):

@@ -1,3 +1,11 @@
+"""
+Torres Celedon David Antonio 951 2/NOV/23
+
+Desarrollar una clase llamada PaisMySQL que herede de  MySQLConnect.
+Debe agregar los atributos correspondientes de la clase padre.
+
+"""
+
 from mySQL_PYTHON import Mysqlconnect, Conexion, Error
 
 class PaisMysql(Mysqlconnect):
