@@ -15,7 +15,7 @@ Retornar el DataFrame con los datos normalizados.
 Realizar una función que normalice los datos usando escalado simple
 que reciba como parámetro un DataFrame y otro parámetro que
 sea una lista de columnas a normalizar.
-Retornar el DataFrame con los datos normalizados.
+Retornar el DataFrame con los datos normalizados
 """
 import pandas as pd
 
