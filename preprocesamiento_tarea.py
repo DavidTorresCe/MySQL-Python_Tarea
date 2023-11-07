@@ -1,3 +1,35 @@
+"""
+6 de noviembre de 2023
+Torres Celedon David 951
+
+Realizar una función que reciba como parámetro un DataFrame y
+retorne el porcentaje de valores nulos de cada columna.
+
+
+Realizar una función que reciba como parámetro un DataFrame y
+retorne el número de renglones duplicados.
+
+
+Realizar una función que reciba como parámetro un DataFrame y
+un máximo porcentaje. Este debe eliminar todas las columnas que
+superen o igualen el máximo porcentaje de valores nulos establecidos
+en el DataFrame Original. Retornar la lista nombres de columnas eliminadas.
+Validar que el porcentaje máximo esté entre 0 y 1.
+
+
+Realizar una función que reciba como parámetro un DataFrame,
+una lista con los nombres de las columnas a verificar y una cadena.
+La cadena solo puede ser mean, bfill o ffill, en caso
+contrario lanzar una excepción. Debe sustituir los valores nulos por
+el método especificado y retornar el DataFrame modificado.
+
+
+Realizar una función que reciba como parámetro un DataFrame y
+elimine los renglones repetidos en el DataFrame Original.
+Debe retornar la cantidad de renglones eliminados.
+
+"""
+
 import pandas as pd
 
 datos = pd.read_csv("datasets/surveys.csv")
